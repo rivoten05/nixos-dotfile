@@ -45,3 +45,72 @@ git status
 git init
 git config --global init.defaultBranch main
 git status
+git add .
+git commit -m "finish setup nushell config"
+git config --global user.email "supermanten8@gmail.com"
+sudo git config --global user.email "supermanten8@gmail.com"
+sudo git config --global user.name "supermanten"
+git commit -m "finish setup nushell config"
+sudo git commit -m "finish setup nushell config"
+ls
+git status
+pwd
+git status
+pwd
+lsd
+pwd
+ls
+sys disks
+pwd
+ls
+cd config/nushell/
+nvim config.nu
+exit
+ls
+pwd
+y
+p
+ll
+ls
+l
+ls
+pwd
+ls
+pwd
+p
+du -f
+du -h
+ls
+cd nixos-dotfiles/
+du
+pwd
+lsd
+ls
+pwd
+ls
+pwd
+ls
+pwd
+ls
+pwd
+lsd
+ls
+pwd
+ls
+python --version
+pip3 --version
+pwd
+h
+history
+ls
+fastfetch
+ls
+cd config/
+cd qtile/
+nvim
+cd ../nvim/
+nvim
+cd ../qtile/
+nvim
+cd ~/nixos-dotfiles/
+gs

@@ -76,7 +76,7 @@ for vt in range(1, 8):
     )
 
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "123"] # Only three numbered groups now
 
 for i in groups:
     keys.extend(
@@ -88,15 +88,7 @@ for i in groups:
                 lazy.group[i.name].toscreen(),
                 desc=f"Switch to group {i.name}",
             ),
-            # mod + shift + group number = switch to & move focused window to group
-            # Key(
-            #     [mod, "shift"],
-            #     i.name,
-            #     lazy.window.togroup(i.name, switch_group=True),
-            #     desc=f"Switch to & move focused window to group {i.name}",
-            # ),
-            # Or, use below if you prefer not to switch to that group.
-            # # mod + shift + group number = move focused window to group
+            # mod + shift + group number = move focused window to group
             Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
                 desc="move focused window to group {}".format(i.name)),
         ]
@@ -217,13 +209,13 @@ screens = [
                 #     padding = 8, 
                 #     fmt = '{}',
                 # ),
-                # sep,
-                # widget.CPU(
-                #     foreground = colors[4],
-                #     padding = 8, 
-                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
-                #     format="CPU: {load_percent}%",
-                # ),
+                sep,
+                widget.CPU(
+                    foreground = colors[4],
+                    padding = 8, 
+                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e btop')},
+                    format="CPU: {load_percent}%",
+                ),
                 # sep,
                 # widget.Memory(
                 #     foreground = colors[8],
