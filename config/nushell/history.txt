@@ -114,3 +114,67 @@ cd ../qtile/
 nvim
 cd ~/nixos-dotfiles/
 gs
+ga
+ls
+gs
+gc "config qtile and nushell"
+sudo gc "config qtile and nushell"
+ls
+gs
+sudo git commit -m "config qtile and nushell"
+gs
+pwd
+cd config/nvim/
+ls
+cd ../qtile/
+v
+y
+.
+..
+du
+cd nixos-dotfiles/config/qtile/
+fastfetch
+ls
+pwd
+cd
+nvim
+y
+sudo cp -R /etc/nixos/* .
+sudo chown -R rio:users .
+sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos-btw
+sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos-btw
+sudo nixos-rebuild switch --flake ~/nixos-dotfiles#nixos-btw
+sudo nmcli device wifi connect "Redmi Note 10" password "012345678"
+sudo nmcli device wifi connect "Redmi Note 10" password "012345678"
+sudo nmcli device wifi list
+sudo nmcli device wifi connect "Redmi Note 8" password "manjay1996"
+history
+pwd
+ls
+pwd
+fastfetch
+sudo nmcli device wifi connect "Redmi Note 8" password "manjay1996"
+sudo nmcli device wifi list
+sudo nmcli device wifi connect "Redmi Note 8" password "manjay1996"
+nmcli connection sow
+nmcli connection show
+nmcli connection delete "Redmi Note 8"
+nmcli connection show
+sudo nmcli connection delete "Redmi Note 8"
+nmcli connection show
+sudo nmcli connection delete "Redmi Note 10"
+sudo nmcli device wifi connect "Redmi Note 8" password "manjay1996"
+ls
+pwd
+ip addr
+pwd
+cd
+ls
+pwd
+curl --version
+wget --version
+gcc --version
+curl wttr.in/Mumbai
+pwd
+cd nixos-dotfiles/
+gs

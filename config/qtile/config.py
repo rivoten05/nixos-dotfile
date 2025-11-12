@@ -151,12 +151,12 @@ screens = [
         top=bar.Bar(
             widgets = [
                 widget.Spacer(length = 3),
-                widget.Image(
-                    filename = "~/.config/qtile/icons/tonybtw.png",
-                    # filename = "~/.config/qtile/icons/debian.png",
-                    scale = "False",
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("qtilekeys-yad")},
-                ),
+                # widget.Image(
+                #     # filename = "~/.config/qtile/icons/tonybtw.png",
+                #     filename = "~/.config/qtile/icons/debian.png",
+                #     scale = "False",
+                #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("qtilekeys-yad")},
+                # ),
                 widget.Prompt(
                     font = "Ubuntu Mono",
                     fontsize=14,
