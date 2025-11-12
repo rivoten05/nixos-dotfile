@@ -1,0 +1,47 @@
+ls
+pwd
+sys mem
+uname
+sys disks
+sys temp
+lsd
+pwd
+ls
+pwd
+cd ~/.config/
+ls
+cd nushell/
+ls
+nvim config.nu
+exit
+yazi
+ls
+yazi
+ls
+pw
+pwd
+fastfetch
+y
+ls
+pwd
+ls
+pwd
+lsd
+pwd
+ls
+sys mem
+pwd
+python --version
+cd ~/nixos-dotfiles/
+ls
+y
+sudo reboot
+ls
+rm -rf nix
+ls
+cd nixos-dotfiles/
+ls
+git status
+git init
+git config --global init.defaultBranch main
+git status
