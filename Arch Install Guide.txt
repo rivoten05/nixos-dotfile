@@ -1,0 +1,126 @@
+🚀 Final Minimal Arch Install Guide (Btrfs, COSMIC, No Encryption/Zram)
+Phase 1: Preparation & Partitioning
+Verify Boot Mode & Internet
+
+Bash
+
+cat /sys/firmware/efi/fw_platform_size
+ping -c 2 archlinux.org
+Partition the Disk (/dev/sda) Use fdisk or gdisk to create two partitions:
+
+/dev/sda1 (EFI): 300M, Type: EFI System (ef00).
+
+/dev/sda2 (ROOT): Remaining space, Type: Linux filesystem (8300).
+
+Bash
+
+gdisk /dev/sda
+# Create sda1 (300M, ef00)
+# Create sda2 (remaining, 8300)
+w
+Format Partitions
+
+Bash
+
+mkfs.fat -F32 /dev/sda1 # EFI
+mkfs.btrfs /dev/sda2   # Root/Main
+Create Mount Points, Subvolumes & Mount
+
+Bash
+
+mount /dev/sda2 /mnt
+btrfs subvolume create /mnt/@
+btrfs subvolume create /mnt/@home
+umount /mnt
+
+# Create mount point directories (Fix for previous error)
+mkdir -p /mnt /mnt/home /mnt/boot
+
+# Mount subvolumes with Btrfs options
+mount -o noatime,compress=zstd,subvol=@ /dev/sda2 /mnt
+mount -o noatime,compress=zstd,subvol=@home /dev/sda2 /mnt/home
+
+# Mount EFI
+mount /dev/sda1 /mnt/boot
+Phase 2: Base System Installation
+Install Base Packages
+
+Bash
+
+pacstrap -K /mnt base linux linux-firmware base-devel btrfs-progs
+# NOTE: btrfs-progs is included here to fix the previous 'fsck helpers' warning.
+Configure Fstab & Chroot
+
+Bash
+
+genfstab -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+Phase 3: System Configuration
+Timezone, Localization, Hostname
+
+Bash
+
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime # Adjust timezone as needed
+hwclock --systohc
+
+# Uncomment en_US.UTF-8 (or your preferred locale) in /etc/locale.gen
+locale-gen
+echo "LANG=en_US.UTF-8" > /etc/locale.conf
+echo "KEYMAP=us" > /etc/vconsole.conf
+
+echo "arch-cosmic" > /etc/hostname # Choose your hostname
+Users and Sudo
+
+Bash
+
+passwd # Set root password
+useradd -m -g users -G wheel rad # Replace rad
+passwd rad
+
+pacman -S sudo
+EDITOR=nvim visudo # Uncomment the line: %wheel ALL=(ALL) ALL
+Install Core Utilities & COSMIC
+
+Bash
+
+pacman -S --noconfirm \
+    grub efibootmgr \
+    networkmanager \
+    intel-ucode || pacman -S amd-ucode \
+    cosmic ly \
+    bluez bluez-utils \
+    pipewire pipewire-pulse
+Initial Ramdisk & Bootloader Setup Edit the mkinitcpio configuration to ensure Btrfs module is loaded:
+
+Bash
+
+nvim /etc/mkinitcpio.conf
+# Change: MODULES=()  to  MODULES=(btrfs)
+
+# Regenerate initramfs image
+mkinitcpio -P
+
+# Install GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --recheck
+
+# Generate GRUB configuration
+grub-mkconfig -o /boot/grub/grub.cfg
+Enable Services
+
+Bash
+
+systemctl enable NetworkManager
+systemctl enable bluetooth
+systemctl enable ly.service
+systemctl enable fstrim.timer
+Phase 4: Finalization
+Exit Chroot and Reboot
+
+Bash
+
+exit
+umount -R /mnt
+reboot
+Your system should now boot into GRUB, load Arch Linux, and present you with the Ly Display Manager to log in to the COSMIC Desktop.
+
+Do you want to add the commands for Secure Boot now, or is this complete?
